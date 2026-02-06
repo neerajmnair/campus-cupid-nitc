@@ -2,24 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITC Login | Antigravity</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="heart-canvas"></canvas>
 
-<div class="login-container">
-    <h2>Login</h2>
+    <div class="container">
+        <div class="login-card" id="loginCard">
+            <div class="header">
+                <div class="icon-container">
+                    <svg class="heart-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h1>NIT Calicut Login</h1>
+                <p>Enter your institute credentials</p>
+            </div>
 
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Username or Email" required>
-        <input type="password" id="password" placeholder="Password" required>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder=" " required autocomplete="off">
+                    <label for="email">NITC Email (@nitc.ac.in)</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " required>
+                    <label for="password">Password</label>
+                </div>
 
-        <button type="submit">Login</button>
-    </form>
+                <div id="error-msg" class="error-msg"></div>
 
-    <p id="error"></p>
-</div>
+                <button type="submit" class="btn">
+                    <span>Login</span>
+                    <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
