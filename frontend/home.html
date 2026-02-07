@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NITC Cupid — Home</title>
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="sidebar__top">
+        <a class="logo" href="#" aria-label="NITC Cupid home">
+          <span class="logo__mark" aria-hidden="true"></span>
+          <span class="logo__text">NITC Cupid</span>
+        </a>
+
+        <div class="pill">
+          <span class="pill__dot" aria-hidden="true"></span>
+          <span class="pill__text">Campus-only</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav__item is-active" data-tab="find" type="button">
+          <span class="nav__icon" aria-hidden="true">🔍</span>
+          <span class="nav__label">Find</span>
+        </button>
+        <button class="nav__item" data-tab="chats" type="button">
+          <span class="nav__icon" aria-hidden="true">💬</span>
+          <span class="nav__label">Chats</span>
+          <span class="nav__badge" id="badgeChats">2</span>
+        </button>
+        <button class="nav__item" data-tab="requests" type="button">
+          <span class="nav__icon" aria-hidden="true">⏳</span>
+          <span class="nav__label">Requests</span>
+          <span class="nav__badge" id="badgeReq">3</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__bottom">
+        <div class="mini-card">
+          <div class="mini-card__title">Hackathon demo mode</div>
+          <div class="mini-card__text">Data is mocked. Wire your API later.</div>
+          <button class="mini-card__btn" id="demoFill" type="button">Fill sample data</button>
+        </div>
+
+        <div class="sidebar__footer">
+          <span class="tiny">© <span id="year"></span> NITC Cupid</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main" aria-label="Content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="icon-btn only-mobile" id="openSidebar" type="button" aria-label="Open menu">☰</button>
+          <div class="title-block">
+            <h1 class="page-title" id="pageTitle">Find People</h1>
+            <p class="page-subtitle" id="pageSubtitle">Discover students around campus</p>
+          </div>
+        </div>
+
+        <div class="topbar__right">
+          <div class="search">
+            <span class="search__icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" class="search__input" type="search" placeholder="Search name / interests…" />
+          </div>
+
+          <button class="icon-btn" id="notifBtn" type="button" aria-label="Notifications">
+            🔔
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+
+          <div class="profile" id="profileMenu">
+            <button class="profile__btn" type="button" aria-haspopup="menu" aria-expanded="false" id="profileBtn">
+              <span class="avatar" aria-hidden="true">S</span>
+              <span class="profile__meta">
+                <span class="profile__name">Savio</span>
+                <span class="profile__sub">CSE • 2nd yr</span>
+              </span>
+              <span class="chev" aria-hidden="true">▾</span>
+            </button>
+
+            <div class="profile__dropdown" role="menu" aria-label="Profile menu">
+              <a class="menu-item" href="#" role="menuitem">👤 View Profile</a>
+              <a class="menu-item" href="#" role="menuitem">✏️ Edit Profile</a>
+              <a class="menu-item" href="#" role="menuitem">⚙️ Settings</a>
+              <div class="menu-sep" aria-hidden="true"></div>
+              <a class="menu-item menu-item--danger" href="#" role="menuitem">🚪 Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content wrapper -->
+      <section class="content">
+
+        <!-- FIND TAB -->
+        <section class="tab is-active" id="tab-find" aria-label="Find people">
+          <div class="grid-two">
+            <!-- Person Card -->
+            <article class="person-card" id="personCard">
+              <div class="person-card__media">
+                <div class="cover" aria-hidden="true">
+                  <div class="cover__glow"></div>
+                </div>
+                <div class="chip-row">
+                  <span class="chip">Verified @nitc.ac.in</span>
+                  <span class="chip chip--soft">New</span>
+                </div>
+              </div>
+
+              <div class="person-card__body">
+                <div class="person-head">
+                  <div>
+                    <h2 class="person-name" id="pName">Ananya Menon</h2>
+                    <p class="person-meta" id="pMeta">ECE • 3rd year • Girls Hostel</p>
+                  </div>
+                  <span class="score" title="Match score (demo)" id="pScore">82%</span>
+                </div>
+
+                <p class="person-bio" id="pBio">
+                  Love late-night chai, campus walks, and indie playlists. Looking for someone to explore Calicut food spots with.
+                </p>
+
+                <div class="tags" id="pTags">
+                  <span class="tag">Chai</span>
+                  <span class="tag">Music</span>
+                  <span class="tag">Badminton</span>
+                  <span class="tag">Movies</span>
+                </div>
+
+                <div class="actions">
+                  <button class="btn btn--ghost" id="skipBtn" type="button">✖ Skip</button>
+                  <button class="btn btn--primary" id="likeBtn" type="button">❤ Like</button>
+                </div>
+
+                <p class="hint">
+                  Tip: Keep it respectful. Only mutual likes unlock chat.
+                </p>
+              </div>
+            </article>
+
+            <!-- Right column: Filters / Quick stats -->
+            <aside class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title">Quick Filters</h3>
+                <button class="link-btn" type="button" id="clearFilters">Clear</button>
+              </div>
+
+              <div class="panel__body">
+                <div class="filter">
+                  <label class="label" for="filterYear">Year</label>
+                  <select class="select" id="filterYear">
+                    <option value="any">Any</option>
+                    <option value="1">1st year</option>
+                    <option value="2">2nd year</option>
+                    <option value="3">3rd year</option>
+                    <option value="4">4th year</option>
+                    <option value="mtech">M.Tech</option>
+                  </select>
+                </div>
+
+                <div class="filter">
+                  <label class="label" for="filterDept">Department</label>
+                  <select class="select" id="filterDept">
+                    <option value="any">Any</option>
+                    <option value="cse">CSE</option>
+                    <option value="ece">ECE</option>
+                    <option value="eee">EEE</option>
+                    <option value="mech">MECH</option>
+                    <option value="civil">CIVIL</option>
+                    <option value="arch">ARCH</option>
+                  </select>
+                </div>
+
+                <div class="filter">
+                  <label class="label" for="filterInterest">Interest</label>
+                  <input class="input" id="filterInterest" placeholder="e.g. music, coding, sports" />
+                </div>
+
+                <div class="stats">
+                  <div class="stat">
+                    <div class="stat__num" id="statSeen">12</div>
+                    <div class="stat__label">Profiles seen</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat__num" id="statLikes">4</div>
+                    <div class="stat__label">Likes sent</div>
+                  </div>
+                </div>
+
+                <div class="callout">
+                  <div class="callout__title">Safe mode</div>
+                  <div class="callout__text">Report/block options can be added in settings.</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- CHATS TAB -->
+        <section class="tab" id="tab-chats" aria-label="Chats">
+          <div class="chat-layout">
+            <aside class="chat-list" aria-label="Chat list">
+              <div class="chat-list__head">
+                <h3 class="panel__title">Matches</h3>
+                <span class="small-muted">2</span>
+              </div>
+
+              <button class="chat-item is-active" type="button" data-chat="0">
+                <span class="chat-avatar" aria-hidden="true">A</span>
+                <span class="chat-info">
+                  <span class="chat-name">Ananya</span>
+                  <span class="chat-preview">You: See you near library?</span>
+                </span>
+                <span class="chat-time">2m</span>
+              </button>
+
+              <button class="chat-item" type="button" data-chat="1">
+                <span class="chat-avatar chat-avatar--2" aria-hidden="true">R</span>
+                <span class="chat-info">
+                  <span class="chat-name">Rahul</span>
+                  <span class="chat-preview">Rahul: Nice playlist 😄</span>
+                </span>
+                <span class="chat-time">1h</span>
+              </button>
+            </aside>
+
+            <section class="chat" aria-label="Chat window">
+              <header class="chat__head">
+                <div class="chat__who">
+                  <span class="chat-avatar" aria-hidden="true" id="activeChatAvatar">A</span>
+                  <div>
+                    <div class="chat__name" id="activeChatName">Ananya Menon</div>
+                    <div class="chat__sub" id="activeChatSub">Online • Mutual match</div>
+                  </div>
+                </div>
+                <button class="icon-btn" type="button" aria-label="More actions">⋯</button>
+              </header>
+
+              <div class="chat__body" id="chatBody">
+                <div class="bubble bubble--them">Hey! You’re the one who likes badminton too?</div>
+                <div class="bubble bubble--me">Yep 😄 Wanna play sometime near SAC?</div>
+                <div class="bubble bubble--them">Sure! Evening works best.</div>
+              </div>
+
+              <form class="chat__input" id="chatForm">
+                <input class="input" id="chatMsg" placeholder="Type a message…" autocomplete="off" />
+                <button class="btn btn--primary" type="submit">Send</button>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <!-- REQUESTS TAB -->
+        <section class="tab" id="tab-requests" aria-label="Requests">
+          <div class="panel">
+            <div class="panel__head">
+              <h3 class="panel__title">Pending Requests</h3>
+              <span class="small-muted" id="reqCount">3</span>
+            </div>
+
+            <div class="panel__body">
+              <div class="req-grid" id="reqGrid"></div>
+            </div>
+          </div>
+        </section>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div class="overlay" id="overlay" hidden></div>
+
+  <script src="js/home.js"></script>
+</body>
+</html>
