@@ -65,6 +65,126 @@
     setOverlay(false);
   }
 
+  // ================= Chats (interactive) =================
+const chatItems = Array.from(document.querySelectorAll(".chat-item"));
+const chatBody = document.getElementById("chatBody");
+const chatForm = document.getElementById("chatForm");
+const chatMsg = document.getElementById("chatMsg");
+
+const activeChatAvatar = document.getElementById("activeChatAvatar");
+const activeChatName = document.getElementById("activeChatName");
+const activeChatSub = document.getElementById("activeChatSub");
+
+// Simple local chat store (replace with API later)
+const chats = [
+  {
+    id: 0,
+    name: "Ananya Menon",
+    avatar: "A",
+    sub: "Online • Mutual match",
+    messages: [
+      { from: "them", text: "Hey! You’re the one who likes badminton too?" },
+      { from: "me", text: "Yep 😄 Wanna play sometime near SAC?" },
+      { from: "them", text: "Sure! Evening works best." },
+    ],
+  },
+  {
+    id: 1,
+    name: "Rahul",
+    avatar: "R",
+    sub: "Last seen 1h ago • Mutual match",
+    messages: [
+      { from: "them", text: "Nice playlist 😄" },
+      { from: "me", text: "Haha thanks! Send yours too?" },
+    ],
+  },
+];
+
+let activeChatId = 0;
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  }[m]));
+}
+
+function renderChatHeader(chat) {
+  activeChatAvatar.textContent = chat.avatar;
+  activeChatName.textContent = chat.name;
+  activeChatSub.textContent = chat.sub;
+}
+
+function renderChatBody(chat) {
+  chatBody.innerHTML = chat.messages
+    .map(m => `<div class="bubble bubble--${m.from}">${escapeHtml(m.text)}</div>`)
+    .join("");
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function setActiveChat(id) {
+  activeChatId = id;
+
+  chatItems.forEach(btn => {
+    btn.classList.toggle("is-active", Number(btn.dataset.chat) === id);
+  });
+
+  const chat = chats.find(c => c.id === id);
+  if (!chat) return;
+
+  renderChatHeader(chat);
+  renderChatBody(chat);
+}
+
+function updateChatPreview(id, text) {
+  const btn = chatItems.find(b => Number(b.dataset.chat) === id);
+  if (!btn) return;
+  const previewEl = btn.querySelector("[data-preview]");
+  const timeEl = btn.querySelector("[data-time]");
+  if (previewEl) previewEl.textContent = `You: ${text}`;
+  if (timeEl) timeEl.textContent = "now";
+}
+
+// Click chat in left list -> open it
+chatItems.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = Number(btn.dataset.chat);
+    setActiveChat(id);
+  });
+});
+
+// Send message
+chatForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const text = chatMsg.value.trim();
+  if (!text) return;
+
+  const chat = chats.find(c => c.id === activeChatId);
+  if (!chat) return;
+
+  chat.messages.push({ from: "me", text });
+  renderChatBody(chat);
+  updateChatPreview(activeChatId, text);
+
+  chatMsg.value = "";
+  chatMsg.focus();
+});
+
+// Better UX: Enter sends, Shift+Enter does nothing (input is single-line anyway)
+chatMsg.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    chatForm.requestSubmit();
+  }
+});
+
+// Initialize chat area based on first active item
+setActiveChat(0);
+
+
   navItems.forEach(btn => btn.addEventListener("click", () => showTab(btn.dataset.tab)));
 
   // Find People (mock rotation)
@@ -168,21 +288,6 @@
       const badgeChats = document.getElementById("badgeChats");
       badgeChats.textContent = String(Number(badgeChats.textContent || "0") + 1);
     }
-  });
-
-  // Demo fill
-  document.getElementById("demoFill").addEventListener("click", () => {
-    requests = [
-      { name: "Sneha", meta: "MECH • 2nd year", letter: "S" },
-      { name: "Akhil", meta: "EEE • 3rd year", letter: "A" },
-      { name: "Nihal", meta: "CSE • 1st year", letter: "N" },
-      { name: "Meera", meta: "ECE • 4th year", letter: "M" },
-    ];
-    idx = 0;
-    seen = 0;
-    likes = 0;
-    renderRequests();
-    renderPerson();
   });
 
   renderPerson();

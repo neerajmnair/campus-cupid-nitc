@@ -40,11 +40,6 @@
       </nav>
 
       <div class="sidebar__bottom">
-        <div class="mini-card">
-          <div class="mini-card__title">Hackathon demo mode</div>
-          <div class="mini-card__text">Data is mocked. Wire your API later.</div>
-          <button class="mini-card__btn" id="demoFill" type="button">Fill sample data</button>
-        </div>
 
         <div class="sidebar__footer">
           <span class="tiny">© <span id="year"></span> NITC Cupid</span>
@@ -86,12 +81,8 @@
             </button>
 
             <div class="profile__dropdown" role="menu" aria-label="Profile menu">
-              <a class="menu-item" href="#" role="menuitem">👤 View Profile</a>
-              <a class="menu-item" href="#" role="menuitem">✏️ Edit Profile</a>
-              <a class="menu-item" href="#" role="menuitem">⚙️ Settings</a>
-              <div class="menu-sep" aria-hidden="true"></div>
-              <a class="menu-item menu-item--danger" href="#" role="menuitem">🚪 Logout</a>
-            </div>
+  <a class="menu-item" href="profile.html" role="menuitem">👤 View Profile</a>
+</div>
           </div>
         </div>
       </header>
@@ -212,23 +203,29 @@
                 <span class="small-muted">2</span>
               </div>
 
-              <button class="chat-item is-active" type="button" data-chat="0">
-                <span class="chat-avatar" aria-hidden="true">A</span>
-                <span class="chat-info">
-                  <span class="chat-name">Ananya</span>
-                  <span class="chat-preview">You: See you near library?</span>
-                </span>
-                <span class="chat-time">2m</span>
-              </button>
+             <button class="chat-item is-active" type="button" data-chat="0">
+  <span class="chat-avatar" aria-hidden="true">A</span>
+  <span class="chat-info">
+    <span class="chat-name">Ananya</span>
+    <span class="chat-preview" data-preview>You: See you near library?</span>
+  </span>
+  <span class="chat-meta">
+    <span class="chat-time" data-time>2m</span>
+    <span class="chat-unread" data-unread hidden>0</span>
+  </span>
+</button>
 
-              <button class="chat-item" type="button" data-chat="1">
-                <span class="chat-avatar chat-avatar--2" aria-hidden="true">R</span>
-                <span class="chat-info">
-                  <span class="chat-name">Rahul</span>
-                  <span class="chat-preview">Rahul: Nice playlist 😄</span>
-                </span>
-                <span class="chat-time">1h</span>
-              </button>
+<button class="chat-item" type="button" data-chat="1">
+  <span class="chat-avatar chat-avatar--2" aria-hidden="true">R</span>
+  <span class="chat-info">
+    <span class="chat-name">Rahul</span>
+    <span class="chat-preview" data-preview>Rahul: Nice playlist 😄</span>
+  </span>
+  <span class="chat-meta">
+    <span class="chat-time" data-time>1h</span>
+    <span class="chat-unread" data-unread hidden>0</span>
+  </span>
+</button>
             </aside>
 
             <section class="chat" aria-label="Chat window">
